@@ -9,28 +9,43 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* ========================================================
-       ELIMINACIÓN RADICAL DEL DOBLE SCROLL EN CHROME/MÓVIL
+       SOLUCIÓN DEFINITIVA A LA DOBLE BARRA DE SCROLL
+       Unificamos para que exista un único scroll en .pagina
        ======================================================== */
     html, body {
-      height: auto !important;
-      min-height: 100% !important;
-      overflow-x: hidden !important;
-      overflow-y: auto !important;
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important; /* Bloquea el scroll exterior duplicado */
       position: relative !important;
     }
 
     .pagina {
-      height: auto !important;
-      min-height: 100vh !important;
-      max-height: none !important;
-      overflow: visible !important;
-      position: relative;
+      height: 100% !important;
+      max-height: 100vh !important;
+      overflow-y: auto !important; /* Único scroll activo en toda la app */
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch;
+      position: relative !important;
+      box-sizing: border-box !important;
     }
 
     .contenido {
       height: auto !important;
       max-height: none !important;
-      overflow: visible !important;
+      overflow: visible !important; /* Impide crear un scroll hijo */
+    }
+
+    /* Ocultar barra scroll en motores WebKit para mantener la estética limpia */
+    .pagina::-webkit-scrollbar {
+      width: 6px;
+    }
+    .pagina::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .pagina::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
     }
 
     /* ========================================================
