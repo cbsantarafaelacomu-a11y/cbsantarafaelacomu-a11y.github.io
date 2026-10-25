@@ -1,176 +1,468 @@
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#501b2a">
-  <meta name="description" content="Centro Barrial Santa Rafaela y Pilar, Recoleta. Comunidad, acompañamiento y una respuesta pastoral ante el consumo problemático y la extrema vulnerabilidad.">
-  <title>Centro Barrial Santa Rafaela y Pilar</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="foto" role="img" aria-label="La Virgencita, presencia cercana en la calle"></div>
-  <div class="velo" aria-hidden="true"></div>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
 
-  <main class="pagina">
-    <section class="contenido" aria-labelledby="titulo">
+:root {
+  --vino: #6d2435;
+  --coral: #e86d4b;
+  --crema: #fff6e9;
+  --tinta: #30221f;
+  --oro: #e6b64c;
+}
 
-      <header class="encabezado">
-        <div class="marca">
-          <span class="marca-linea"></span>
-          <span>COMUNIDAD · PRESENCIA · ENCUENTRO</span>
-        </div>
+* { box-sizing: border-box; }
 
-        <p class="sobrelinea">Recoleta · Buenos Aires</p>
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
-        <h1 id="titulo">
-          Centro Barrial
-          <em>Santa Rafaela y Pilar</em>
-        </h1>
+body {
+  background: var(--vino);
+  color: var(--crema);
+  font-family: 'DM Sans', sans-serif;
+}
 
-        <p class="subtitulo">
-          Un lugar para llegar, ser recibido y volver a empezar.
-        </p>
-      </header>
+.foto {
+  position: fixed;
+  z-index: -3;
+  inset: 0;
+  background-image: url("virgencita calle.jpg");
+  background-position: center 48%;
+  background-size: cover;
+  transform: scale(1.015);
+}
 
-      <section class="descripcion" aria-label="Nuestra misión">
-        <p>
-          Somos parte de la Familia Grande de los Hogares de Cristo.
-          Una respuesta pastoral ante el consumo problemático y la extrema
-          vulnerabilidad, donde acompañarnos y hacer comunidad es el primer paso.
-        </p>
+.velo {
+  position: fixed;
+  z-index: -2;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(42, 20, 25, .93) 0%, rgba(55, 24, 30, .86) 34%, rgba(55, 24, 30, .53) 61%, rgba(37, 22, 25, .13) 100%),
+    linear-gradient(0deg, rgba(35, 19, 23, .53), transparent 38%, rgba(35, 19, 23, .12));
+  pointer-events: none;
+}
 
-        <p>
-          De lunes a sábado compartimos un plato de comida con alrededor de
-          <strong>120 personas</strong>. También ofrecemos ducha, higiene,
-          espacios educativos, talleres, escucha y acompañamiento.
-        </p>
-      </section>
+.pagina {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: visible;
+  background: transparent;
+}
 
-      <nav class="acciones" aria-label="Enlaces principales">
+.contenido {
+  width: min(660px, 54vw);
+  max-height: none;
+  overflow: visible;
+  padding: clamp(24px, 5.5vh, 58px) clamp(24px, 5.8vw, 92px);
+  animation: aparecer .75s ease-out both;
+}
 
-        <a class="boton boton-principal"
-           href="https://www.instagram.com/cbsantarafaela/"
-           target="_blank" rel="noopener noreferrer">
-          <span class="icono icono-instagram" aria-hidden="true">◎</span>
-          <span class="boton-texto">
-            <strong>Conocé el Centro</strong>
-            <small>Seguinos en Instagram</small>
-          </span>
-          <span class="flecha" aria-hidden="true">↗</span>
-        </a>
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #f4c66b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .19em;
+  margin-bottom: clamp(20px, 3.3vh, 34px);
+}
 
-        <div class="titulo-donaciones">
-          <span>AYUDANOS A SEGUIR</span>
-          <span class="linea-donaciones"></span>
-        </div>
+.marca-linea {
+  display: inline-block;
+  width: 31px;
+  height: 2px;
+  background: var(--coral);
+}
 
-        <div class="fila-donaciones">
+.sobrelinea {
+  margin: 0 0 9px;
+  color: #f2c7ad;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
 
-          <a class="boton boton-donar"
-             href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=776ac70891984b2aad4f3a103f7e9c6b"
-             target="_blank" rel="noopener noreferrer">
-            <span class="icono corazon" aria-hidden="true">♥</span>
-            <span class="boton-texto">
-              <strong>Donación mensual</strong>
-              <small>Un aporte que acompaña</small>
-            </span>
-            <span class="flecha" aria-hidden="true">↗</span>
-          </a>
+h1 {
+  margin: 0;
+  max-width: 620px;
+  color: var(--crema);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(34px, 3.45vw, 54px);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -.035em;
+}
 
-          <a class="boton boton-donar"
-             href="https://link.mercadopago.com.ar/comedorcentrobarrial"
-             target="_blank" rel="noopener noreferrer">
-            <span class="icono corazon" aria-hidden="true">♥</span>
-            <span class="boton-texto">
-              <strong>Donación única</strong>
-              <small>Colaborá cuando quieras</small>
-            </span>
-            <span class="flecha" aria-hidden="true">↗</span>
-          </a>
+h1 em {
+  display: block;
+  color: #f2bd64;
+  font-weight: 500;
+}
 
-        </div>
+.subtitulo {
+  margin: 14px 0 17px;
+  color: #fff0df;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(15px, 1.35vw, 19px);
+  font-style: italic;
+  line-height: 1.35;
+}
 
-        <a class="boton boton-voluntario"
-           href="https://tinyurl.com/sumatealcb"
-           target="_blank" rel="noopener noreferrer">
-          <span class="icono" aria-hidden="true">＋</span>
-          <span class="boton-texto">
-            <strong>Sumate como voluntario</strong>
-            <small>Compartí tu tiempo y tus talentos</small>
-          </span>
-          <span class="flecha" aria-hidden="true">↗</span>
-        </a>
+.descripcion {
+  max-width: 510px;
+  color: rgba(255, 246, 233, .91);
+  font-size: clamp(11px, .88vw, 13px);
+  line-height: 1.55;
+}
 
-      </nav>
+.descripcion p { margin: 8px 0 0; }
+.descripcion strong { color: #ffd27a; font-weight: 700; }
 
-      <section class="institucional" aria-label="Información institucional">
+.acciones {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  width: min(430px, 100%);
+  margin-top: clamp(15px, 2.2vh, 23px);
+}
 
-        <a class="item-institucional"
-           href="mailto:cbrafaelaypilar@gmail.com">
-          <svg class="item-icono" xmlns="http://www.w3.org/2000/svg"
-               viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round"
-               stroke-linejoin="round" aria-hidden="true">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="m3 6 9 7 9-7"/>
-          </svg>
-          <span>
-            <small>CONTACTO</small>
-            <strong>cbrafaelaypilar@gmail.com</strong>
-          </span>
-          <span class="flecha" aria-hidden="true">↗</span>
-        </a>
+.boton {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  gap: 12px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 246, 233, .34);
+  border-radius: 5px;
+  color: var(--crema);
+  text-decoration: none;
+  transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
+}
 
-        <a class="item-institucional"
-           href="https://www.congregacion-aci.org/santa-rafaela-maria/"
-           target="_blank" rel="noopener noreferrer">
-          <svg class="item-icono" xmlns="http://www.w3.org/2000/svg"
-               viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round"
-               stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-          </svg>
-          <span>
-            <small>ESPIRITUALIDAD</small>
-            <strong>Biografía de <span class="destello-santa">Santa Rafaela María</span></strong>
-          </span>
-          <span class="flecha" aria-hidden="true">↗</span>
-        </a>
+.boton:hover, .boton:focus-visible {
+  transform: translateX(4px);
+  border-color: var(--oro);
+  outline: none;
+}
 
-        <a class="item-institucional"
-           href="https://www.instagram.com/esclavas.conosur.aci/"
-           target="_blank" rel="noopener noreferrer">
-          <svg class="item-icono" xmlns="http://www.w3.org/2000/svg"
-               viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round"
-               stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M17.5 6.5h.01"/>
-          </svg>
-          <span>
-            <small>CONGREGACIÓN</small>
-            <strong>Esclavas del Sagrado Corazón de Jesús · Cono Sur</strong>
-          </span>
-          <span class="flecha" aria-hidden="true">↗</span>
-        </a>
+.boton-principal { background: rgba(255, 246, 233, .13); }
+.boton-principal:hover { background: rgba(255, 246, 233, .22); }
 
-      </section>
+.boton-donar {
+  color: #35201d;
+  background: var(--oro);
+  border-color: var(--oro);
+}
 
-      <footer class="pie">
-        <p class="pie-texto">
-          <span class="pie-institucion">Una obra de las Esclavas del Sagrado Corazón de Jesús</span>
-          <span>Montevideo 1372 · Ciudad de Buenos Aires</span>
-        </p>
-        <a class="firma-jc" href="https://www.josecarmuega.com"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Sitio web de José Carmuega" title="José Carmuega">JC</a>
-      </footer>
+.boton-donar:hover {
+  background: #f4cb73;
+  border-color: #f4cb73;
+}
 
-    </section>
-  </main>
-</body>
-</html>
+.boton-voluntario { background: rgba(109, 36, 53, .65); }
+.boton-voluntario:hover { background: rgba(109, 36, 53, .95); }
+
+.icono {
+  display: grid;
+  place-items: center;
+  flex: 0 0 29px;
+  width: 29px;
+  height: 29px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 19px;
+  line-height: 1;
+}
+
+.corazon { font-size: 15px; }
+
+.boton span:nth-child(2) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.boton strong { font-size: 12px; font-weight: 700; }
+.boton small { font-size: 10px; opacity: .82; }
+.flecha { font-size: 16px; }
+
+.titulo-donaciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 7px 0 2px;
+  color: #f4c66b;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.linea-donaciones {
+  flex: 1;
+  height: 1px;
+  background: rgba(230, 182, 76, .45);
+}
+
+.fila-donaciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.fila-donaciones .boton {
+  min-width: 0;
+  gap: 8px;
+  padding: 8px 10px;
+}
+
+.fila-donaciones .boton strong { font-size: 11px; }
+.fila-donaciones .boton small { font-size: 9px; }
+.fila-donaciones .icono { flex-basis: 25px; width: 25px; height: 25px; }
+
+.institucional {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  width: min(430px, 100%);
+  margin-top: 22px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(255, 246, 233, .25);
+}
+
+.item-institucional {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: rgba(255, 246, 233, .85);
+  text-decoration: none;
+}
+
+.item-institucional:hover { color: #ffd27a; }
+
+.item-icono {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.item-institucional > span:nth-child(2) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.item-institucional small {
+  color: #f2c7ad;
+  font-size: 8px;
+  letter-spacing: .14em;
+}
+
+.item-institucional strong {
+  font-size: 11px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.destello-santa {
+  color: #ffd27a;
+  animation: destello 3s ease-in-out infinite;
+}
+
+.pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: min(430px, 100%);
+  margin-top: 18px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(255, 246, 233, .2);
+}
+
+.pie-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+  color: rgba(255, 246, 233, .75);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.pie-institucion { color: var(--crema); }
+
+.firma-jc {
+  flex: 0 0 auto;
+  color: #f2c7ad;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-decoration: none;
+}
+
+.firma-jc:hover { color: #ffd27a; }
+
+.esquina {
+  position: fixed;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+  opacity: .9;
+}
+
+.esquina-superior {
+  top: 22px;
+  right: 22px;
+  border-top: 1px solid var(--oro);
+  border-right: 1px solid var(--oro);
+}
+
+.esquina-inferior {
+  bottom: 22px;
+  left: 22px;
+  border-bottom: 1px solid var(--oro);
+  border-left: 1px solid var(--oro);
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes destello {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .72; }
+}
+
+@media (min-width: 1500px) {
+  .contenido { width: min(760px, 54vw); }
+}
+
+@media (max-width: 760px) {
+  .pagina {
+    align-items: flex-start;
+  }
+
+  .foto { background-position: 57% center; }
+
+  .velo {
+    background:
+      linear-gradient(180deg, rgba(42, 20, 25, .28) 0%, rgba(42, 20, 25, .72) 26%, rgba(42, 20, 25, .94) 54%, rgba(42, 20, 25, .97) 100%),
+      linear-gradient(90deg, rgba(42, 20, 25, .18), rgba(42, 20, 25, .18));
+  }
+
+  .contenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 24px 22px 22px;
+  }
+
+  .marca {
+    gap: 8px;
+    margin-bottom: clamp(10px, 2vh, 17px);
+    font-size: 8px;
+    letter-spacing: .16em;
+  }
+
+  .marca-linea { width: 22px; }
+  .sobrelinea { margin-bottom: 5px; font-size: 9px; }
+
+  h1 {
+    font-size: clamp(27px, 7.5vw, 39px);
+    line-height: 1.02;
+  }
+
+  .subtitulo {
+    margin: 8px 0 9px;
+    font-size: clamp(13px, 3.6vw, 16px);
+  }
+
+  .descripcion {
+    font-size: clamp(11px, 2.9vw, 12px);
+    line-height: 1.45;
+  }
+
+  .descripcion p { margin-top: 6px; }
+
+  .acciones { gap: 6px; margin-top: 12px; }
+
+  .boton {
+    min-height: 42px;
+    gap: 9px;
+    padding: 6px 10px;
+  }
+
+  .icono {
+    flex-basis: 25px;
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+  }
+
+  .boton strong { font-size: 11px; }
+  .boton small { font-size: 9px; }
+
+  .institucional {
+    gap: 10px;
+    margin-top: 17px;
+    padding-top: 13px;
+  }
+
+  .item-institucional strong { font-size: 10px; }
+
+  .pie {
+    margin-top: 13px;
+    padding-top: 10px;
+  }
+
+  .pie-texto { font-size: 9px; }
+
+  .esquina-superior {
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .esquina-inferior {
+    bottom: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 380px), (max-height: 680px) {
+  .contenido { padding-top: 16px; padding-bottom: 16px; }
+  .marca { margin-bottom: 8px; }
+  .subtitulo { margin-top: 6px; margin-bottom: 6px; }
+  .descripcion { font-size: 10px; line-height: 1.4; }
+  .acciones { margin-top: 8px; gap: 5px; }
+  .boton { min-height: 38px; }
+  .institucional { margin-top: 12px; gap: 8px; }
+  .pie { margin-top: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
