@@ -1,323 +1,283 @@
 
-/* ==========================================================
-   CENTRO BARRIAL SANTA RAFAELA Y PILAR
-   Identidad visual · Bordó, marfil y luz cálida
-   ========================================================== */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
 
 :root {
-  color-scheme: dark;
-  --bordo: #501b2a;
-  --bordo-profundo: #210b12;
-  --bordo-claro: #722f40;
-  --marfil: #fff8f0;
-  --texto: rgba(255, 248, 240, 0.86);
-  --texto-suave: rgba(255, 248, 240, 0.64);
-  --linea: rgba(255, 248, 240, 0.16);
-  --acento: #e9c6a0;
-  --radio: 5px;
+  --vino: #6d2435;
+  --coral: #e86d4b;
+  --crema: #fff6e9;
+  --tinta: #30221f;
+  --oro: #e6b64c;
 }
-
-/* BASE */
 
 * {
   box-sizing: border-box;
 }
 
 html {
+  width: 100%;
   min-height: 100%;
-  background: var(--bordo-profundo);
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  overflow-x: clip;
+  background: var(--vino);
 }
 
 body {
   position: relative;
+  isolation: isolate;
+  width: 100%;
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   margin: 0;
-  color: var(--marfil);
-  background: var(--bordo-profundo);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  background: var(--vino);
+  color: var(--crema);
+  font-family: 'DM Sans', sans-serif;
 }
 
-a {
-  color: inherit;
-}
-
-a:focus-visible {
-  outline: 2px solid var(--acento);
-  outline-offset: 5px;
-}
-
-/* ==========================================================
-   FOTOGRAFÍA
-   La imagen original permanece en el fondo.
-   ========================================================== */
+/* Fondo: independiente de la altura del contenido */
 
 .foto {
   position: fixed;
+  z-index: -2;
   inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-color: var(--bordo-profundo);
-  background-image: url("virgencita%20calle.jpg");
-  background-repeat: no-repeat;
+  background-image: url("virgencita calle.jpg");
+  background-position: center 48%;
   background-size: cover;
-  background-position: center 24%;
-  transform: translateZ(0);
+  transform: scale(1.015);
+  pointer-events: none;
 }
-
-/* Degradado para conservar la imagen y leer cómodamente */
 
 .velo {
   position: fixed;
+  z-index: -1;
   inset: 0;
-  z-index: 0;
-  pointer-events: none;
   background:
     linear-gradient(
       90deg,
-      rgba(31, 8, 16, 0.88) 0%,
-      rgba(43, 11, 22, 0.77) 40%,
-      rgba(43, 11, 22, 0.46) 72%,
-      rgba(25, 7, 13, 0.36) 100%
+      rgba(42, 20, 25, .93) 0%,
+      rgba(55, 24, 30, .86) 34%,
+      rgba(55, 24, 30, .53) 61%,
+      rgba(37, 22, 25, .13) 100%
     ),
     linear-gradient(
-      180deg,
-      rgba(24, 6, 12, 0.10) 0%,
-      rgba(28, 7, 14, 0.16) 55%,
-      rgba(24, 6, 12, 0.77) 100%
+      0deg,
+      rgba(35, 19, 23, .53),
+      transparent 38%,
+      rgba(35, 19, 23, .12)
     );
+  pointer-events: none;
 }
 
-/* ==========================================================
-   COMPOSICIÓN GENERAL
-   ========================================================== */
+/* El margen automático centra el contenido cuando entra.
+   Si es más alto que la pantalla, permite que crezca hacia abajo. */
 
 .pagina {
   position: relative;
-  z-index: 1;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
   min-height: 100vh;
-  min-height: 100dvh;
-  padding: 46px clamp(20px, 6vw, 92px) 32px;
+  min-height: 100svh;
+  padding: 28px 0;
 }
 
 .contenido {
-  position: relative;
-  width: min(100%, 650px);
-  margin: 0;
-  padding: clamp(25px, 4vw, 42px);
-  border: 1px solid rgba(255, 248, 240, 0.12);
-  border-radius: var(--radio);
-  background: rgba(34, 9, 17, 0.72);
-  box-shadow: 0 22px 75px rgba(0, 0, 0, 0.20);
-  -webkit-backdrop-filter: blur(9px);
-  backdrop-filter: blur(9px);
-  overflow-wrap: break-word;
+  width: min(660px, 54vw);
+  margin-block: auto;
+  padding: clamp(24px, 4vh, 42px) clamp(24px, 5.8vw, 76px);
+  animation: aparecer .75s ease-out both;
 }
 
-/* ==========================================================
-   MARCA Y ENCABEZADO
-   ========================================================== */
-
-.encabezado {
-  margin: 0;
-}
+/* Encabezado */
 
 .marca {
   display: flex;
   align-items: center;
   gap: 11px;
-  margin-bottom: 34px;
-  color: var(--acento);
+  margin-bottom: clamp(18px, 3vh, 30px);
+  color: #f4c66b;
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.17em;
-  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: .19em;
 }
 
 .marca-linea {
-  display: block;
-  flex: 0 0 27px;
-  height: 1px;
-  background: var(--acento);
+  display: inline-block;
+  flex: 0 0 31px;
+  width: 31px;
+  height: 2px;
+  background: var(--coral);
 }
 
 .sobrelinea {
-  margin: 0 0 12px;
-  color: var(--texto-suave);
+  margin: 0 0 9px;
+  color: #f2c7ad;
   font-size: 12px;
-  letter-spacing: 0.12em;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 
 h1 {
+  max-width: 620px;
   margin: 0;
-  color: var(--marfil);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(36px, 5vw, 49px);
-  font-weight: 400;
-  line-height: 1.12;
-  letter-spacing: -0.045em;
+  color: var(--crema);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(34px, 3.45vw, 54px);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -.035em;
 }
 
 h1 em {
   display: block;
-  margin-top: 5px;
-  color: var(--acento);
-  font-weight: 400;
-  font-style: italic;
+  color: #f2bd64;
+  font-weight: 500;
 }
 
 .subtitulo {
-  max-width: 420px;
-  margin: 19px 0 0;
-  color: rgba(255, 248, 240, 0.91);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 18px;
-  line-height: 1.5;
+  margin: 14px 0 17px;
+  color: #fff0df;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(15px, 1.35vw, 19px);
+  font-style: italic;
+  line-height: 1.35;
 }
 
-/* ==========================================================
-   DESCRIPCIÓN
-   ========================================================== */
+/* Texto de presentación */
 
 .descripcion {
-  margin-top: 28px;
-  color: var(--texto);
-  font-size: 14px;
-  line-height: 1.8;
+  max-width: 510px;
+  color: rgba(255, 246, 233, .91);
+  font-size: clamp(11px, .88vw, 13px);
+  line-height: 1.55;
 }
 
 .descripcion p {
-  margin: 0 0 14px;
-}
-
-.descripcion p:last-child {
-  margin-bottom: 0;
+  margin: 8px 0 0;
 }
 
 .descripcion strong {
-  color: var(--marfil);
-  font-weight: 600;
+  color: #ffd27a;
+  font-weight: 700;
 }
 
-/* ==========================================================
-   BOTONES
-   ========================================================== */
+/* Botones y donaciones */
 
 .acciones {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 29px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  width: min(430px, 100%);
+  margin-top: clamp(15px, 2.2vh, 23px);
 }
 
 .boton {
-  position: relative;
   display: flex;
   align-items: center;
-  gap: 13px;
-  width: 100%;
-  min-height: 62px;
-  padding: 13px 16px;
-  border: 1px solid rgba(255, 248, 240, 0.19);
-  border-radius: 3px;
-  color: var(--marfil);
+  min-width: 0;
+  min-height: 46px;
+  gap: 12px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 246, 233, .34);
+  border-radius: 5px;
+  color: var(--crema);
   text-decoration: none;
   transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease;
+    transform .2s ease,
+    background-color .2s ease,
+    border-color .2s ease;
 }
 
-.boton:hover {
-  transform: translateY(-1px);
-  border-color: rgba(233, 198, 160, 0.65);
-  background-color: rgba(255, 248, 240, 0.07);
+.boton:hover,
+.boton:focus-visible {
+  transform: translateX(3px);
+  border-color: var(--oro);
+  outline: none;
 }
 
 .boton-principal {
-  border-color: rgba(233, 198, 160, 0.62);
-  background: rgba(114, 47, 64, 0.70);
+  background: rgba(255, 246, 233, .13);
 }
 
 .boton-principal:hover {
-  background: rgba(130, 54, 73, 0.86);
+  background: rgba(255, 246, 233, .22);
+}
+
+.boton-donar {
+  color: #35201d;
+  background: var(--oro);
+  border-color: var(--oro);
+}
+
+.boton-donar:hover {
+  background: #f4cb73;
+  border-color: #f4cb73;
+}
+
+.boton-voluntario {
+  background: rgba(109, 36, 53, .65);
+}
+
+.boton-voluntario:hover {
+  background: rgba(109, 36, 53, .95);
 }
 
 .icono {
-  display: flex;
-  flex: 0 0 27px;
-  align-items: center;
-  justify-content: center;
-  color: var(--acento);
-  font-size: 24px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 29px;
+  width: 29px;
+  height: 29px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 19px;
   line-height: 1;
 }
 
-.icono-instagram {
-  font-size: 29px;
-}
-
 .corazon {
-  font-size: 19px;
+  font-size: 15px;
 }
 
-.boton-texto {
+.boton .boton-texto {
   display: flex;
   flex: 1;
   flex-direction: column;
-  min-width: 0;
   gap: 2px;
+  min-width: 0;
 }
 
-.boton-texto strong {
-  color: var(--marfil);
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-.boton-texto small {
-  color: var(--texto-suave);
+.boton strong {
   font-size: 12px;
-  line-height: 1.45;
+  font-weight: 700;
+}
+
+.boton small {
+  font-size: 10px;
+  opacity: .82;
 }
 
 .flecha {
   flex: 0 0 auto;
-  color: var(--acento);
   font-size: 16px;
-  line-height: 1;
 }
 
-/* ==========================================================
-   DONACIONES
-   ========================================================== */
+/* Separador de donaciones */
 
 .titulo-donaciones {
   display: flex;
   align-items: center;
-  gap: 13px;
-  margin: 12px 0 1px;
-  color: var(--acento);
+  gap: 10px;
+  margin: 7px 0 2px;
+  color: #f4c66b;
   font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.19em;
+  font-weight: 700;
+  letter-spacing: .16em;
 }
 
 .linea-donaciones {
   flex: 1;
   height: 1px;
-  background: var(--linea);
+  background: rgba(230, 182, 76, .45);
 }
 
 .fila-donaciones {
@@ -327,364 +287,333 @@ h1 em {
 }
 
 .fila-donaciones .boton {
-  min-height: 78px;
-  gap: 10px;
-  padding: 12px;
-  background: rgba(255, 248, 240, 0.035);
+  gap: 8px;
+  padding: 8px 10px;
 }
 
-.fila-donaciones .boton:hover {
-  background: rgba(255, 248, 240, 0.09);
+.fila-donaciones .boton strong {
+  font-size: 11px;
+}
+
+.fila-donaciones .boton small {
+  font-size: 9px;
 }
 
 .fila-donaciones .icono {
-  flex-basis: 20px;
+  flex-basis: 25px;
+  width: 25px;
+  height: 25px;
 }
 
-.fila-donaciones .boton-texto strong {
-  font-size: 12px;
-}
-
-.fila-donaciones .boton-texto small {
-  font-size: 10px;
-}
-
-/* ==========================================================
-   VOLUNTARIADO
-   ========================================================== */
-
-.boton-voluntario {
-  min-height: 60px;
-  background: rgba(255, 248, 240, 0.025);
-}
-
-/* ==========================================================
-   INFORMACIÓN INSTITUCIONAL
-   ========================================================== */
+/* Contacto e información institucional */
 
 .institucional {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  margin-top: 30px;
-  padding-top: 8px;
-  border-top: 1px solid var(--linea);
+  gap: 10px;
+  width: min(430px, 100%);
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 246, 233, .25);
 }
 
 .item-institucional {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 10px;
   min-width: 0;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255, 248, 240, 0.075);
-  color: var(--texto);
+  color: rgba(255, 246, 233, .85);
   text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.item-institucional:last-child {
-  border-bottom: 0;
 }
 
 .item-institucional:hover {
-  color: var(--marfil);
+  color: #ffd27a;
 }
 
 .item-icono {
-  display: block;
-  flex: 0 0 19px;
-  width: 19px;
-  height: 19px;
-  color: var(--acento);
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .item-institucional > span:nth-child(2) {
   display: flex;
   flex: 1;
   flex-direction: column;
-  min-width: 0;
   gap: 3px;
+  min-width: 0;
 }
 
 .item-institucional small {
-  color: var(--texto-suave);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  line-height: 1.5;
+  color: #f2c7ad;
+  font-size: 8px;
+  letter-spacing: .14em;
 }
 
 .item-institucional strong {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.55;
+  font-size: 11px;
+  font-weight: 500;
   overflow-wrap: anywhere;
 }
 
 .destello-santa {
-  display: inline;
-  color: var(--marfil);
-  animation: destelloSuave 6s ease-in-out infinite;
+  color: #ffd27a;
+  animation: destello 3s ease-in-out infinite;
 }
 
-@keyframes destelloSuave {
-  0%, 100% {
-    text-shadow: 0 0 0 rgba(255, 248, 240, 0);
-  }
-
-  50% {
-    text-shadow: 0 0 9px rgba(255, 248, 240, 0.43);
-  }
-}
-
-/* ==========================================================
-   PIE INSTITUCIONAL
-   Integrado, legible y dentro del ancho de la tarjeta
-   ========================================================== */
+/* Pie */
 
 .pie {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  margin-top: 12px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 248, 240, 0.11);
+  gap: 12px;
+  width: min(430px, 100%);
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 246, 233, .2);
 }
 
 .pie-texto {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   margin: 0;
-  color: var(--texto-suave);
+  color: rgba(255, 246, 233, .75);
   font-size: 10px;
-  line-height: 1.65;
+  line-height: 1.5;
 }
 
 .pie-institucion {
-  color: rgba(255, 248, 240, 0.82);
+  color: var(--crema);
 }
 
 .firma-jc {
-  display: inline-block;
   flex: 0 0 auto;
-  padding: 2px 0 0 8px;
-  color: rgba(255, 248, 240, 0.42);
-  font-family: Georgia, "Times New Roman", serif;
+  color: #f2c7ad;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 12px;
-  letter-spacing: 0.16em;
+  letter-spacing: .12em;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 .firma-jc:hover {
-  color: var(--marfil);
+  color: #ffd27a;
 }
 
-/* ==========================================================
-   TABLETS Y PANTALLAS MEDIANAS
-   ========================================================== */
+/* Animaciones */
 
-@media (min-width: 900px) {
-  .pagina {
-    padding-top: 40px;
-    padding-bottom: 40px;
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+@keyframes destello {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .72; }
+}
+
+/* Pantallas grandes */
+
+@media (min-width: 1500px) {
   .contenido {
-    margin-left: 0;
+    width: min(760px, 54vw);
   }
 }
 
-/* ==========================================================
-   CELULARES
-   Más fotografía visible, lectura cómoda y scroll natural
-   ========================================================== */
+/* Celulares y tabletas */
 
-@media (max-width: 600px) {
+@media (max-width: 760px) {
+  .pagina {
+    padding: 24px 0;
+  }
+
   .foto {
-    background-position: center 22%;
+    background-position: 57% center;
   }
 
   .velo {
     background:
       linear-gradient(
         180deg,
-        rgba(28, 7, 14, 0.18) 0%,
-        rgba(32, 8, 16, 0.38) 24%,
-        rgba(32, 8, 16, 0.79) 52%,
-        rgba(28, 7, 14, 0.94) 100%
+        rgba(42, 20, 25, .28) 0%,
+        rgba(42, 20, 25, .72) 26%,
+        rgba(42, 20, 25, .94) 54%,
+        rgba(42, 20, 25, .97) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(42, 20, 25, .18),
+        rgba(42, 20, 25, .18)
       );
-  }
-
-  .pagina {
-    display: block;
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: 22px 14px 28px;
   }
 
   .contenido {
     width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 24px 21px 20px;
-    background: rgba(34, 9, 17, 0.76);
-    -webkit-backdrop-filter: blur(7px);
-    backdrop-filter: blur(7px);
+    padding: 20px 22px;
   }
 
   .marca {
-    gap: 9px;
-    margin-bottom: 26px;
-    font-size: 9px;
-    letter-spacing: 0.13em;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 8px;
+    letter-spacing: .16em;
   }
 
   .marca-linea {
-    flex-basis: 21px;
+    flex-basis: 22px;
+    width: 22px;
   }
 
   .sobrelinea {
-    margin-bottom: 10px;
-    font-size: 11px;
-  }
-
-  h1 {
-    font-size: clamp(34px, 9vw, 43px);
-    line-height: 1.1;
-  }
-
-  h1 em {
-    margin-top: 5px;
-  }
-
-  .subtitulo {
-    margin-top: 16px;
-    font-size: 17px;
-    line-height: 1.5;
-  }
-
-  .descripcion {
-    margin-top: 23px;
-    font-size: 14px;
-    line-height: 1.75;
-  }
-
-  .descripcion p {
-    margin-bottom: 12px;
-  }
-
-  .acciones {
-    gap: 9px;
-    margin-top: 23px;
-  }
-
-  .boton {
-    min-height: 60px;
-    padding: 12px 13px;
-    gap: 11px;
-  }
-
-  .boton-texto strong {
-    font-size: 13px;
-  }
-
-  .boton-texto small {
-    font-size: 11px;
-  }
-
-  .titulo-donaciones {
-    margin-top: 11px;
+    margin-bottom: 6px;
     font-size: 9px;
   }
 
-  .fila-donaciones {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .fila-donaciones .boton {
-    min-height: 62px;
-    padding: 10px 13px;
-  }
-
-  .fila-donaciones .boton-texto strong {
-    font-size: 13px;
-  }
-
-  .fila-donaciones .boton-texto small {
-    font-size: 11px;
-  }
-
-  .institucional {
-    margin-top: 23px;
-    padding-top: 5px;
-  }
-
-  .item-institucional {
-    gap: 11px;
-    padding: 13px 0;
-  }
-
-  .item-institucional strong {
-    font-size: 12px;
-    line-height: 1.5;
-  }
-
-  .pie {
-    align-items: flex-end;
-    gap: 8px;
-    margin-top: 9px;
-    padding-top: 13px;
-  }
-
-  .pie-texto {
-    font-size: 10px;
-    line-height: 1.55;
-  }
-}
-
-/* ==========================================================
-   CELULARES MUY ESTRECHOS
-   ========================================================== */
-
-@media (max-width: 360px) {
-  .pagina {
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-
-  .contenido {
-    padding-right: 16px;
-    padding-left: 16px;
-  }
-
-  .marca {
-    font-size: 8px;
-    letter-spacing: 0.10em;
-  }
-
   h1 {
-    font-size: 33px;
+    font-size: clamp(29px, 7.5vw, 39px);
+    line-height: 1.04;
   }
 
   .subtitulo {
+    margin: 9px 0 11px;
+    font-size: clamp(14px, 3.6vw, 16px);
+  }
+
+  .descripcion {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .descripcion p {
+    margin-top: 6px;
+  }
+
+  .acciones {
+    gap: 6px;
+    margin-top: 13px;
+  }
+
+  .boton {
+    min-height: 42px;
+    gap: 9px;
+    padding: 6px 10px;
+  }
+
+  .icono {
+    flex-basis: 25px;
+    width: 25px;
+    height: 25px;
     font-size: 16px;
+  }
+
+  .boton strong {
+    font-size: 11px;
+  }
+
+  .boton small {
+    font-size: 9px;
+  }
+
+  .institucional {
+    gap: 9px;
+    margin-top: 16px;
+    padding-top: 12px;
+  }
+
+  .item-institucional strong {
+    font-size: 10px;
+  }
+
+  .pie {
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+
+  .pie-texto {
+    font-size: 9px;
   }
 }
 
-/* Respeta la preferencia de reducir animaciones */
+/* Celulares pequeños o pantallas de poca altura */
+
+@media (max-width: 380px), (max-height: 680px) {
+  .pagina {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .contenido {
+    padding: 16px 18px;
+  }
+
+  .marca {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: clamp(27px, 7.3vw, 32px);
+  }
+
+  .subtitulo {
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+
+  .descripcion {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .acciones {
+    margin-top: 9px;
+    gap: 5px;
+  }
+
+  .boton {
+    min-height: 38px;
+  }
+
+  .fila-donaciones {
+    gap: 6px;
+  }
+
+  .fila-donaciones .boton {
+    gap: 6px;
+    padding: 6px 7px;
+  }
+
+  .fila-donaciones .boton strong {
+    font-size: 10px;
+  }
+
+  .fila-donaciones .boton small {
+    font-size: 8px;
+  }
+
+  .institucional {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .pie {
+    margin-top: 9px;
+  }
+}
+
+/* Accesibilidad */
 
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
   }
 }
