@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
 
 :root {
@@ -6,11 +7,6 @@
   --crema: #fff6e9;
   --tinta: #30221f;
   --oro: #e6b64c;
-  --fondo: #2a1419;
-  --aspecto-foto: 1.5;                                  /* ancho ÷ alto de tu foto */
-  --alto-foto: calc(100vw / var(--aspecto-foto));       /* alto de la foto en celu */
-  --foto-x: 50%;                                        /* encuadre horizontal */
-  --col: min(660px, 54vw);                              /* ancho de la columna de texto en PC */
 }
 
 * {
@@ -22,7 +18,7 @@ html {
   min-height: 100%;
   margin: 0;
   overflow-x: clip;
-  background: var(--fondo);
+  background: var(--vino);
 }
 
 body {
@@ -32,25 +28,23 @@ body {
   min-height: 100vh;
   min-height: 100svh;
   margin: 0;
-  background: var(--fondo);
+  background: var(--vino);
   color: var(--crema);
   font-family: 'DM Sans', sans-serif;
 }
 
-/* Fondo */
+/* Fondo: independiente de la altura del contenido */
 
 .foto {
   position: fixed;
   z-index: -2;
   inset: 0;
   background-image: url("virgencita calle.jpg");
-  background-position: var(--foto-x) top;
+  background-position: center 48%;
   background-size: cover;
-  background-repeat: no-repeat;
+  transform: scale(1.015);
   pointer-events: none;
 }
-
-/* El velo oscuro cubre toda la columna de texto y después se desvanece */
 
 .velo {
   position: fixed;
@@ -59,14 +53,16 @@ body {
   background:
     linear-gradient(
       90deg,
-      rgba(42, 20, 25, .92) 0%,
-      rgba(42, 20, 25, .86) var(--col),
-      rgba(42, 20, 25, 0) calc(var(--col) + 12vw)
+      rgba(42, 20, 25, .93) 0%,
+      rgba(55, 24, 30, .86) 34%,
+      rgba(55, 24, 30, .53) 61%,
+      rgba(37, 22, 25, .13) 100%
     ),
     linear-gradient(
       0deg,
-      rgba(35, 19, 23, .45),
-      transparent 30%
+      rgba(35, 19, 23, .53),
+      transparent 38%,
+      rgba(35, 19, 23, .12)
     );
   pointer-events: none;
 }
@@ -86,7 +82,7 @@ body {
 }
 
 .contenido {
-  width: var(--col);
+  width: min(660px, 54vw);
   margin-block: auto;
   padding: clamp(24px, 4vh, 42px) clamp(24px, 5.8vw, 76px);
   animation: aparecer .75s ease-out both;
@@ -147,17 +143,17 @@ h1 em {
   line-height: 1.35;
 }
 
-/* Texto de presentación: mismo ancho que los botones */
+/* Texto de presentación */
 
 .descripcion {
-  max-width: min(430px, 100%);
-  color: rgba(255, 246, 233, .93);
-  font-size: clamp(14px, 1.05vw, 16px);
-  line-height: 1.6;
+  max-width: 510px;
+  color: rgba(255, 246, 233, .91);
+  font-size: clamp(11px, .88vw, 13px);
+  line-height: 1.55;
 }
 
 .descripcion p {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
 }
 
 .descripcion strong {
@@ -408,8 +404,14 @@ h1 em {
 /* Animaciones */
 
 @keyframes aparecer {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes destello {
@@ -417,134 +419,43 @@ h1 em {
   50% { opacity: .72; }
 }
 
-/* ============================================================
-   PC (más de 760px): texto a la izquierda, foto a la derecha
-   ocupando TODO el alto de la pantalla, para que nunca se corte
-   la cabeza. La foto arranca donde termina la columna de texto
-   y su borde izquierdo se funde con el fondo.
-   ============================================================ */
-
-@media (min-width: 761px) {
-  .foto {
-    inset: 0 0 0 auto;
-    width: min(calc(100vw - var(--col) + 4vw), calc(100vh * var(--aspecto-foto)));
-    width: min(calc(100vw - var(--col) + 4vw), calc(100svh * var(--aspecto-foto)));
-    background-position: var(--foto-x) top;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 32%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 32%);
-  }
-
-  .firma-jc {
-    position: fixed;
-    right: clamp(20px, 2.5vw, 40px);
-    bottom: clamp(16px, 3vh, 28px);
-    font-size: 14px;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, .6);
-  }
-}
-
 /* Pantallas grandes */
 
 @media (min-width: 1500px) {
-  :root {
-    --col: min(760px, 54vw);
-  }
-}
-
-/* PC con ventana de poca altura: se compacta solo en vertical */
-
-@media (min-width: 761px) and (max-height: 700px) {
   .contenido {
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-
-  .marca {
-    margin-bottom: 12px;
-  }
-
-  .subtitulo {
-    margin: 8px 0 10px;
-  }
-
-  .descripcion {
-    line-height: 1.5;
-  }
-
-  .descripcion p {
-    margin-top: 6px;
-  }
-
-  .acciones {
-    margin-top: 12px;
-    gap: 6px;
-  }
-
-  .boton {
-    min-height: 42px;
-  }
-
-  .institucional {
-    margin-top: 14px;
-    padding-top: 12px;
-    gap: 8px;
-  }
-
-  .pie {
-    margin-top: 10px;
+    width: min(760px, 54vw);
   }
 }
 
-/* ============================================================
-   Celulares y tabletas (hasta 760px): foto completa arriba.
-   Independiente de las reglas de PC: sin flex de centrado ni
-   variables de columna, y sin nada que sobresalga de la pantalla.
-   ============================================================ */
+/* Celulares y tabletas */
 
 @media (max-width: 760px) {
-  html,
-  body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
   .pagina {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    min-height: 100svh;
-    padding: calc(var(--alto-foto) - 60px) 0 24px;
+    padding: 24px 0;
   }
 
   .foto {
-    position: absolute;
-    inset: 0 0 auto 0;
-    width: 100%;
-    height: var(--alto-foto);
-    background-position: center top;
-    -webkit-mask-image: none;
-    mask-image: none;
+    background-position: 57% center;
   }
 
   .velo {
-    position: absolute;
-    inset: 0 0 auto 0;
-    width: 100%;
-    height: calc(var(--alto-foto) + 40px);
-    background: linear-gradient(
-      180deg,
-      rgba(42, 20, 25, .08) 0%,
-      rgba(42, 20, 25, 0) 40%,
-      rgba(42, 20, 25, .7) 70%,
-      #2a1419 86%
-    );
+    background:
+      linear-gradient(
+        180deg,
+        rgba(42, 20, 25, .28) 0%,
+        rgba(42, 20, 25, .72) 26%,
+        rgba(42, 20, 25, .94) 54%,
+        rgba(42, 20, 25, .97) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(42, 20, 25, .18),
+        rgba(42, 20, 25, .18)
+      );
   }
 
   .contenido {
     width: 100%;
-    max-width: 100%;
-    margin: 0;
     padding: 20px 22px;
   }
 
@@ -566,7 +477,6 @@ h1 em {
   }
 
   h1 {
-    max-width: 100%;
     font-size: clamp(29px, 7.5vw, 39px);
     line-height: 1.04;
   }
@@ -577,9 +487,8 @@ h1 em {
   }
 
   .descripcion {
-    max-width: 100%;
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 12px;
+    line-height: 1.45;
   }
 
   .descripcion p {
@@ -632,10 +541,11 @@ h1 em {
   }
 }
 
-/* Celulares chicos o de poca altura (solo celular) */
+/* Celulares pequeños o pantallas de poca altura */
 
-@media (max-width: 380px), (max-width: 760px) and (max-height: 680px) {
+@media (max-width: 380px), (max-height: 680px) {
   .pagina {
+    padding-top: 18px;
     padding-bottom: 18px;
   }
 
@@ -657,7 +567,7 @@ h1 em {
   }
 
   .descripcion {
-    font-size: 13px;
+    font-size: 11px;
     line-height: 1.4;
   }
 
