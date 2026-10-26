@@ -10,6 +10,7 @@
   --aspecto-foto: 1.5;                                  /* ancho ÷ alto de tu foto */
   --alto-foto: calc(100vw / var(--aspecto-foto));       /* alto de la foto en celu */
   --foto-x: 50%;                                        /* encuadre horizontal */
+  --col: min(660px, 54vw);                              /* ancho de la columna de texto en PC */
 }
 
 * {
@@ -49,6 +50,8 @@ body {
   pointer-events: none;
 }
 
+/* El velo oscuro cubre toda la columna de texto y después se desvanece */
+
 .velo {
   position: fixed;
   z-index: -1;
@@ -56,9 +59,9 @@ body {
   background:
     linear-gradient(
       90deg,
-      rgba(42, 20, 25, .90) 0%,
-      rgba(42, 20, 25, .78) 34%,
-      rgba(42, 20, 25, 0) 56%
+      rgba(42, 20, 25, .92) 0%,
+      rgba(42, 20, 25, .86) var(--col),
+      rgba(42, 20, 25, 0) calc(var(--col) + 12vw)
     ),
     linear-gradient(
       0deg,
@@ -83,7 +86,7 @@ body {
 }
 
 .contenido {
-  width: min(660px, 54vw);
+  width: var(--col);
   margin-block: auto;
   padding: clamp(24px, 4vh, 42px) clamp(24px, 5.8vw, 76px);
   animation: aparecer .75s ease-out both;
@@ -144,10 +147,10 @@ h1 em {
   line-height: 1.35;
 }
 
-/* Texto de presentación */
+/* Texto de presentación: mismo ancho que los botones */
 
 .descripcion {
-  max-width: 520px;
+  max-width: min(430px, 100%);
   color: rgba(255, 246, 233, .93);
   font-size: clamp(14px, 1.05vw, 16px);
   line-height: 1.6;
@@ -417,14 +420,15 @@ h1 em {
 /* ============================================================
    PC (más de 760px): texto a la izquierda, foto a la derecha
    ocupando TODO el alto de la pantalla, para que nunca se corte
-   la cabeza. El borde izquierdo de la foto se funde con el fondo.
+   la cabeza. La foto arranca donde termina la columna de texto
+   y su borde izquierdo se funde con el fondo.
    ============================================================ */
 
 @media (min-width: 761px) {
   .foto {
     inset: 0 0 0 auto;
-    width: min(68vw, calc(100vh * var(--aspecto-foto)));
-    width: min(68vw, calc(100svh * var(--aspecto-foto)));
+    width: min(calc(100vw - var(--col) + 4vw), calc(100vh * var(--aspecto-foto)));
+    width: min(calc(100vw - var(--col) + 4vw), calc(100svh * var(--aspecto-foto)));
     background-position: var(--foto-x) top;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 32%);
     mask-image: linear-gradient(90deg, transparent 0%, #000 32%);
@@ -441,244 +445,4 @@ h1 em {
 
 /* Pantallas grandes */
 
-@media (min-width: 1500px) {
-  .contenido {
-    width: min(760px, 54vw);
-  }
-}
-
-/* PC con ventana de poca altura: se compacta solo en vertical */
-
-@media (min-width: 761px) and (max-height: 700px) {
-  .contenido {
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-
-  .marca {
-    margin-bottom: 12px;
-  }
-
-  .subtitulo {
-    margin: 8px 0 10px;
-  }
-
-  .descripcion {
-    line-height: 1.5;
-  }
-
-  .descripcion p {
-    margin-top: 6px;
-  }
-
-  .acciones {
-    margin-top: 12px;
-    gap: 6px;
-  }
-
-  .boton {
-    min-height: 42px;
-  }
-
-  .institucional {
-    margin-top: 14px;
-    padding-top: 12px;
-    gap: 8px;
-  }
-
-  .pie {
-    margin-top: 10px;
-  }
-}
-
-/* ============================================================
-   Celulares y tabletas (hasta 760px): foto completa arriba
-   ============================================================ */
-
-@media (max-width: 760px) {
-  .pagina {
-    padding: calc(var(--alto-foto) - 60px) 0 24px;
-  }
-
-  .foto {
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: var(--alto-foto);
-    background-position: center top;
-  }
-
-  .velo {
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: calc(var(--alto-foto) + 40px);
-    background: linear-gradient(
-      180deg,
-      rgba(42, 20, 25, .08) 0%,
-      rgba(42, 20, 25, 0) 40%,
-      rgba(42, 20, 25, .7) 70%,
-      #2a1419 86%
-    );
-  }
-
-  .contenido {
-    width: 100%;
-    padding: 20px 22px;
-  }
-
-  .marca {
-    gap: 8px;
-    margin-bottom: 14px;
-    font-size: 8px;
-    letter-spacing: .16em;
-  }
-
-  .marca-linea {
-    flex-basis: 22px;
-    width: 22px;
-  }
-
-  .sobrelinea {
-    margin-bottom: 6px;
-    font-size: 9px;
-  }
-
-  h1 {
-    font-size: clamp(29px, 7.5vw, 39px);
-    line-height: 1.04;
-  }
-
-  .subtitulo {
-    margin: 9px 0 11px;
-    font-size: clamp(14px, 3.6vw, 16px);
-  }
-
-  .descripcion {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .descripcion p {
-    margin-top: 6px;
-  }
-
-  .acciones {
-    gap: 6px;
-    margin-top: 13px;
-  }
-
-  .boton {
-    min-height: 42px;
-    gap: 9px;
-    padding: 6px 10px;
-  }
-
-  .icono {
-    flex-basis: 25px;
-    width: 25px;
-    height: 25px;
-    font-size: 16px;
-  }
-
-  .boton strong {
-    font-size: 11px;
-  }
-
-  .boton small {
-    font-size: 9px;
-  }
-
-  .institucional {
-    gap: 9px;
-    margin-top: 16px;
-    padding-top: 12px;
-  }
-
-  .item-institucional strong {
-    font-size: 10px;
-  }
-
-  .pie {
-    margin-top: 12px;
-    padding-top: 10px;
-  }
-
-  .pie-texto {
-    font-size: 9px;
-  }
-}
-
-/* Celulares chicos o de poca altura (solo celular) */
-
-@media (max-width: 380px), (max-width: 760px) and (max-height: 680px) {
-  .pagina {
-    padding-bottom: 18px;
-  }
-
-  .contenido {
-    padding: 16px 18px;
-  }
-
-  .marca {
-    margin-bottom: 10px;
-  }
-
-  h1 {
-    font-size: clamp(27px, 7.3vw, 32px);
-  }
-
-  .subtitulo {
-    margin-top: 7px;
-    margin-bottom: 7px;
-  }
-
-  .descripcion {
-    font-size: 13px;
-    line-height: 1.4;
-  }
-
-  .acciones {
-    margin-top: 9px;
-    gap: 5px;
-  }
-
-  .boton {
-    min-height: 38px;
-  }
-
-  .fila-donaciones {
-    gap: 6px;
-  }
-
-  .fila-donaciones .boton {
-    gap: 6px;
-    padding: 6px 7px;
-  }
-
-  .fila-donaciones .boton strong {
-    font-size: 10px;
-  }
-
-  .fila-donaciones .boton small {
-    font-size: 8px;
-  }
-
-  .institucional {
-    margin-top: 12px;
-    gap: 8px;
-  }
-
-  .pie {
-    margin-top: 9px;
-  }
-}
-
-/* Accesibilidad */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
+@media (min-width:
