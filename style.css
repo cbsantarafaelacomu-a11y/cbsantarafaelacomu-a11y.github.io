@@ -6,8 +6,10 @@
   --crema: #fff6e9;
   --tinta: #30221f;
   --oro: #e6b64c;
-  --foto-x: 50%;                    /* posición horizontal de la foto en PC */
-  --alto-foto: calc(100vw / 1.5);   /* en celu: 1.5 = ancho/alto de tu foto */
+  --fondo: #2a1419;
+  --aspecto-foto: 1.5;                                  /* ancho ÷ alto de tu foto */
+  --alto-foto: calc(100vw / var(--aspecto-foto));       /* alto de la foto en celu */
+  --foto-x: 50%;                                        /* encuadre horizontal */
 }
 
 * {
@@ -19,7 +21,7 @@ html {
   min-height: 100%;
   margin: 0;
   overflow-x: clip;
-  background: var(--vino);
+  background: var(--fondo);
 }
 
 body {
@@ -29,12 +31,12 @@ body {
   min-height: 100vh;
   min-height: 100svh;
   margin: 0;
-  background: var(--vino);
+  background: var(--fondo);
   color: var(--crema);
   font-family: 'DM Sans', sans-serif;
 }
 
-/* Fondo: independiente de la altura del contenido */
+/* Fondo */
 
 .foto {
   position: fixed;
@@ -43,7 +45,7 @@ body {
   background-image: url("virgencita calle.jpg");
   background-position: var(--foto-x) top;
   background-size: cover;
-  transform: scale(1.015);
+  background-repeat: no-repeat;
   pointer-events: none;
 }
 
@@ -54,16 +56,14 @@ body {
   background:
     linear-gradient(
       90deg,
-      rgba(42, 20, 25, .93) 0%,
-      rgba(55, 24, 30, .86) 34%,
-      rgba(55, 24, 30, .53) 61%,
-      rgba(37, 22, 25, .13) 100%
+      rgba(42, 20, 25, .90) 0%,
+      rgba(42, 20, 25, .78) 34%,
+      rgba(42, 20, 25, 0) 56%
     ),
     linear-gradient(
       0deg,
-      rgba(35, 19, 23, .53),
-      transparent 38%,
-      rgba(35, 19, 23, .12)
+      rgba(35, 19, 23, .45),
+      transparent 30%
     );
   pointer-events: none;
 }
@@ -414,17 +414,22 @@ h1 em {
   50% { opacity: .72; }
 }
 
-/* Pantallas grandes */
-
-@media (min-width: 1500px) {
-  .contenido {
-    width: min(760px, 54vw);
-  }
-}
-
-/* PC: la firma JC va en el margen derecho de la pantalla */
+/* ============================================================
+   PC (más de 760px): texto a la izquierda, foto a la derecha
+   ocupando TODO el alto de la pantalla, para que nunca se corte
+   la cabeza. El borde izquierdo de la foto se funde con el fondo.
+   ============================================================ */
 
 @media (min-width: 761px) {
+  .foto {
+    inset: 0 0 0 auto;
+    width: min(68vw, calc(100vh * var(--aspecto-foto)));
+    width: min(68vw, calc(100svh * var(--aspecto-foto)));
+    background-position: var(--foto-x) top;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 32%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 32%);
+  }
+
   .firma-jc {
     position: fixed;
     right: clamp(20px, 2.5vw, 40px);
@@ -434,14 +439,63 @@ h1 em {
   }
 }
 
-/* Celulares y tabletas */
+/* Pantallas grandes */
 
-@media (max-width: 760px) {
-  html,
-  body {
-    background: #2a1419;
+@media (min-width: 1500px) {
+  .contenido {
+    width: min(760px, 54vw);
+  }
+}
+
+/* PC con ventana de poca altura: se compacta solo en vertical */
+
+@media (min-width: 761px) and (max-height: 700px) {
+  .contenido {
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 
+  .marca {
+    margin-bottom: 12px;
+  }
+
+  .subtitulo {
+    margin: 8px 0 10px;
+  }
+
+  .descripcion {
+    line-height: 1.5;
+  }
+
+  .descripcion p {
+    margin-top: 6px;
+  }
+
+  .acciones {
+    margin-top: 12px;
+    gap: 6px;
+  }
+
+  .boton {
+    min-height: 42px;
+  }
+
+  .institucional {
+    margin-top: 14px;
+    padding-top: 12px;
+    gap: 8px;
+  }
+
+  .pie {
+    margin-top: 10px;
+  }
+}
+
+/* ============================================================
+   Celulares y tabletas (hasta 760px): foto completa arriba
+   ============================================================ */
+
+@media (max-width: 760px) {
   .pagina {
     padding: calc(var(--alto-foto) - 60px) 0 24px;
   }
@@ -451,7 +505,6 @@ h1 em {
     inset: 0 0 auto 0;
     height: var(--alto-foto);
     background-position: center top;
-    transform: none;
   }
 
   .velo {
@@ -554,9 +607,9 @@ h1 em {
   }
 }
 
-/* Celulares pequeños o pantallas de poca altura */
+/* Celulares chicos o de poca altura (solo celular) */
 
-@media (max-width: 380px), (max-height: 680px) {
+@media (max-width: 380px), (max-width: 760px) and (max-height: 680px) {
   .pagina {
     padding-bottom: 18px;
   }
