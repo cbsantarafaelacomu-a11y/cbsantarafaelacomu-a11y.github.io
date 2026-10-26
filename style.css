@@ -445,4 +445,265 @@ h1 em {
 
 /* Pantallas grandes */
 
-@media (min-width:
+@media (min-width: 1500px) {
+  :root {
+    --col: min(760px, 54vw);
+  }
+}
+
+/* PC con ventana de poca altura: se compacta solo en vertical */
+
+@media (min-width: 761px) and (max-height: 700px) {
+  .contenido {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .marca {
+    margin-bottom: 12px;
+  }
+
+  .subtitulo {
+    margin: 8px 0 10px;
+  }
+
+  .descripcion {
+    line-height: 1.5;
+  }
+
+  .descripcion p {
+    margin-top: 6px;
+  }
+
+  .acciones {
+    margin-top: 12px;
+    gap: 6px;
+  }
+
+  .boton {
+    min-height: 42px;
+  }
+
+  .institucional {
+    margin-top: 14px;
+    padding-top: 12px;
+    gap: 8px;
+  }
+
+  .pie {
+    margin-top: 10px;
+  }
+}
+
+/* ============================================================
+   Celulares y tabletas (hasta 760px): foto completa arriba.
+   Independiente de las reglas de PC: sin flex de centrado ni
+   variables de columna, y sin nada que sobresalga de la pantalla.
+   ============================================================ */
+
+@media (max-width: 760px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .pagina {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100svh;
+    padding: calc(var(--alto-foto) - 60px) 0 24px;
+  }
+
+  .foto {
+    position: absolute;
+    inset: 0 0 auto 0;
+    width: 100%;
+    height: var(--alto-foto);
+    background-position: center top;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .velo {
+    position: absolute;
+    inset: 0 0 auto 0;
+    width: 100%;
+    height: calc(var(--alto-foto) + 40px);
+    background: linear-gradient(
+      180deg,
+      rgba(42, 20, 25, .08) 0%,
+      rgba(42, 20, 25, 0) 40%,
+      rgba(42, 20, 25, .7) 70%,
+      #2a1419 86%
+    );
+  }
+
+  .contenido {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 20px 22px;
+  }
+
+  .marca {
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 8px;
+    letter-spacing: .16em;
+  }
+
+  .marca-linea {
+    flex-basis: 22px;
+    width: 22px;
+  }
+
+  .sobrelinea {
+    margin-bottom: 6px;
+    font-size: 9px;
+  }
+
+  h1 {
+    max-width: 100%;
+    font-size: clamp(29px, 7.5vw, 39px);
+    line-height: 1.04;
+  }
+
+  .subtitulo {
+    margin: 9px 0 11px;
+    font-size: clamp(14px, 3.6vw, 16px);
+  }
+
+  .descripcion {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .descripcion p {
+    margin-top: 6px;
+  }
+
+  .acciones {
+    gap: 6px;
+    margin-top: 13px;
+  }
+
+  .boton {
+    min-height: 42px;
+    gap: 9px;
+    padding: 6px 10px;
+  }
+
+  .icono {
+    flex-basis: 25px;
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+  }
+
+  .boton strong {
+    font-size: 11px;
+  }
+
+  .boton small {
+    font-size: 9px;
+  }
+
+  .institucional {
+    gap: 9px;
+    margin-top: 16px;
+    padding-top: 12px;
+  }
+
+  .item-institucional strong {
+    font-size: 10px;
+  }
+
+  .pie {
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+
+  .pie-texto {
+    font-size: 9px;
+  }
+}
+
+/* Celulares chicos o de poca altura (solo celular) */
+
+@media (max-width: 380px), (max-width: 760px) and (max-height: 680px) {
+  .pagina {
+    padding-bottom: 18px;
+  }
+
+  .contenido {
+    padding: 16px 18px;
+  }
+
+  .marca {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: clamp(27px, 7.3vw, 32px);
+  }
+
+  .subtitulo {
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+
+  .descripcion {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .acciones {
+    margin-top: 9px;
+    gap: 5px;
+  }
+
+  .boton {
+    min-height: 38px;
+  }
+
+  .fila-donaciones {
+    gap: 6px;
+  }
+
+  .fila-donaciones .boton {
+    gap: 6px;
+    padding: 6px 7px;
+  }
+
+  .fila-donaciones .boton strong {
+    font-size: 10px;
+  }
+
+  .fila-donaciones .boton small {
+    font-size: 8px;
+  }
+
+  .institucional {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .pie {
+    margin-top: 9px;
+  }
+}
+
+/* Accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
