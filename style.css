@@ -475,8 +475,9 @@ h1 em {
   }
 
   .contenedor-principal {
-    grid-template-columns: 1fr;
-    gap: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     margin: 0;
   }
 
@@ -521,7 +522,20 @@ h1 em {
     padding: 8px 12px;
   }
 
-  /* Pie en móviles: texto centrado y botón JC justo abajo */
+  /* REORDENAMIENTO EN CELULAR:
+     1. Título y descripción (columna-info)
+     2. Botones de acción arriba
+     3. Datos institucionales abajo */
+  .columna-acciones {
+    order: 2;
+  }
+
+  .institucional {
+    margin-top: 18px;
+    padding-top: 16px;
+  }
+
+  /* Pie en móviles */
   .pie-unificado {
     flex-direction: column;
     align-items: center;
