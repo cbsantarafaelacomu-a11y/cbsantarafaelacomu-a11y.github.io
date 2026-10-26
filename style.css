@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
 
 :root {
@@ -7,6 +6,8 @@
   --crema: #fff6e9;
   --tinta: #30221f;
   --oro: #e6b64c;
+  --foto-x: 50%;                    /* posición horizontal de la foto en PC */
+  --alto-foto: calc(100vw / 1.5);   /* en celu: 1.5 = ancho/alto de tu foto */
 }
 
 * {
@@ -40,7 +41,7 @@ body {
   z-index: -2;
   inset: 0;
   background-image: url("virgencita calle.jpg");
-  background-position: center 48%;
+  background-position: var(--foto-x) top;
   background-size: cover;
   transform: scale(1.015);
   pointer-events: none;
@@ -146,14 +147,14 @@ h1 em {
 /* Texto de presentación */
 
 .descripcion {
-  max-width: 510px;
-  color: rgba(255, 246, 233, .91);
-  font-size: clamp(11px, .88vw, 13px);
-  line-height: 1.55;
+  max-width: 520px;
+  color: rgba(255, 246, 233, .93);
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.6;
 }
 
 .descripcion p {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
 }
 
 .descripcion strong {
@@ -404,14 +405,8 @@ h1 em {
 /* Animaciones */
 
 @keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translateY(9px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @keyframes destello {
@@ -427,31 +422,49 @@ h1 em {
   }
 }
 
+/* PC: la firma JC va en el margen derecho de la pantalla */
+
+@media (min-width: 761px) {
+  .firma-jc {
+    position: fixed;
+    right: clamp(20px, 2.5vw, 40px);
+    bottom: clamp(16px, 3vh, 28px);
+    font-size: 14px;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, .6);
+  }
+}
+
 /* Celulares y tabletas */
 
 @media (max-width: 760px) {
+  html,
+  body {
+    background: #2a1419;
+  }
+
   .pagina {
-    padding: 24px 0;
+    padding: calc(var(--alto-foto) - 60px) 0 24px;
   }
 
   .foto {
-    background-position: 57% center;
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: var(--alto-foto);
+    background-position: center top;
+    transform: none;
   }
 
   .velo {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(42, 20, 25, .28) 0%,
-        rgba(42, 20, 25, .72) 26%,
-        rgba(42, 20, 25, .94) 54%,
-        rgba(42, 20, 25, .97) 100%
-      ),
-      linear-gradient(
-        90deg,
-        rgba(42, 20, 25, .18),
-        rgba(42, 20, 25, .18)
-      );
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: calc(var(--alto-foto) + 40px);
+    background: linear-gradient(
+      180deg,
+      rgba(42, 20, 25, .08) 0%,
+      rgba(42, 20, 25, 0) 40%,
+      rgba(42, 20, 25, .7) 70%,
+      #2a1419 86%
+    );
   }
 
   .contenido {
@@ -487,8 +500,8 @@ h1 em {
   }
 
   .descripcion {
-    font-size: 12px;
-    line-height: 1.45;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   .descripcion p {
@@ -545,7 +558,6 @@ h1 em {
 
 @media (max-width: 380px), (max-height: 680px) {
   .pagina {
-    padding-top: 18px;
     padding-bottom: 18px;
   }
 
@@ -567,7 +579,7 @@ h1 em {
   }
 
   .descripcion {
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.4;
   }
 
