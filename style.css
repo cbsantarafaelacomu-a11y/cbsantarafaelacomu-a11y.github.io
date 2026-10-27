@@ -501,8 +501,9 @@ h1 em {
   .velo {
     background: 
       linear-gradient(180deg, rgba(42, 20, 25, 0.25) 0%, rgba(42, 20, 25, 0.72) 20%, rgba(42, 20, 25, 0.95) 50%, rgba(42, 20, 25, 0.98) 100%),
-      rgba(42, 20, 25, 0.2);
+      rgba(42, 20, 25, 0.98);
     backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .panel-acciones {
